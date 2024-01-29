@@ -1,5 +1,70 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1501771924607-209f42a6e7e4?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
+  <div class="container">
+    <h1>Your next nautic adventure is near!</h1>
+  </div>
+</div>
+
+<div class="main">
+  <h2>Find a boat</h2>
+  <div class ="boats">
+    <div class="cards">
+      <div class="card-trip">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+        <div class="card-trip-infos">
+          <div>
+            <h2>Title here</h2>
+            <p>port</p>
+            <p>capacitiy</p>
+          </div>
+          <h2 class="card-trip-pricing">£99.99</h2>
+        </div>
+      </div>
+
+      <div class="card-trip">
+        <img class="img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+        <div class="card-trip-infos">
+          <div>
+            <h2>Title here</h2>
+            <div class ="card-trip-port-capacity">
+            <div><p>port</p></div>
+            <div><p>capacitiy</p></div>
+            </div>
+          </div>
+          <h2 class="card-trip-pricing">£99.99</h2>
+        </div>
+      </div>
+
+
+      <div class="card-trip">
+        <img class = "img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
+        <div class="card-trip-infos">
+          <div>
+            <h2>Title here</h2>
+            <div class ="card-trip-port-capacity">
+            <div><p>port</p></div>
+            <div><p>capacitiy</p></div>
+            </div>
+          </div>
+          <h2 class="card-trip-pricing">£99.99</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-more-boats">
+   <a class="btn-flat" href="#">more boats</a>
+   </div>
+  </div>
+
+  <div class="boat-offer">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
+    <div class="boat-offer-infos">
+      <h2>Offer your boat</h2>
+      <p>Offer your boat for boat-enthusiasts easily</p>
+      <a class="btn-flat" href="#">offer boat</a>
+    </div>
+  </div>
+</div>
 
 <% if user_signed_in?  %>
   <div class="flash flash-success alert alert-dismissible fade show" role="alert">

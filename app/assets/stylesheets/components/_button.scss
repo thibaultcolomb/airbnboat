@@ -1,0 +1,24 @@
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #227a9f;
+  transition: background 0.3s ease;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+  text-decoration: none;
+}
+
+.btn-flat:hover {
+  background: #154d65;
+  color: white;
+}
+
+.button-more-boats {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
