@@ -14,7 +14,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-.card-trip > img {
+.img {
   height: 200px;
   object-fit: cover;
 }
@@ -38,4 +38,24 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
+}
+
+.boat_offer {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+
+}
+
+.boat_offer h2 {
+  text-align: left;
+}
+
+.boat-offer-infos {
+  padding: 20px;
 }
