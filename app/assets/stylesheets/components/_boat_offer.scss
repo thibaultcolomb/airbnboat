@@ -1,0 +1,23 @@
+.boat-offer {
+  width: 63%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0 auto;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+
+}
+
+.boat-offer h2 {
+  text-align: left;
+}
+
+.boat-offer-infos {
+  padding: 20px;
+}
+
+.boat-offer img {
+  height: 200px;
+  object-fit: cover;
+}

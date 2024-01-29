@@ -1,4 +1,8 @@
 // Specific CSS for your home-page
+.main {
+  width: 95%;
+  margin: 0 auto;
+}
 
 .banner {
   background-size: cover;
@@ -32,8 +36,4 @@ a {
   text-align: center;
   font-weight: bold;
   margin: 0 auto;
-}
-
-.main {
-  width: 95%;
 }

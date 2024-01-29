@@ -1,5 +1,5 @@
 .cards {
-  width: 80%;
+  width: 75%;
   display: flex;
   justify-content: space-evenly;
   margin: 0 auto;
@@ -14,8 +14,9 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-.img {
+.card-trip img {
   height: 200px;
+  width: 100%;
   object-fit: cover;
 }
 
@@ -38,24 +39,4 @@
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
-}
-
-.boat-offer {
-  width: 80%;
-  display: flex;
-  justify-content: flex-start;
-  margin: 0 auto;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-
-
-}
-
-.boat-offer h2 {
-  text-align: left;
-}
-
-.boat-offer-infos {
-  padding: 20px;
 }
