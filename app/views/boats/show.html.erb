@@ -1,0 +1,11 @@
+<h1><%= @boat.name %></h1>
+<p><%= @boat.description %></p>
+<%= @boat.port %>
+<%= @boat.capacity %>
+<%= @boat.category %>
+<%= @boat.price_per_day %>
+<%= @boat.license %>
+
+<%@boat.photos.each do |photo| %>
+  <%= cl_image_tag(photo.key) %>
+<% end %>
