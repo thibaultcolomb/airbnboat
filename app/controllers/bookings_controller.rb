@@ -35,7 +35,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
     if @booking.save
-      redirect_to boats_path(@booking)
+      redirect_to boat_bookings_path(@booking)
     else
       render :edit, status: :unprocessable_entity
     end
