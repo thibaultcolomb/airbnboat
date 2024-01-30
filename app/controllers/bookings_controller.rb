@@ -7,6 +7,17 @@ class BookingsController < ApplicationController
     @boat = Boat.find(params[:id])
   end
 
+  def edit
+    @booking = Booking.find(params[:id])
+  end
+
+  def update
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to booking_path(@booking)
+  end
+
+
   def new
     @boat = Boat.find(params[:boat_id])
     @booking = Booking.new

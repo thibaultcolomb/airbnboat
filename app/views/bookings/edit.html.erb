@@ -1,0 +1,10 @@
+<h1>hello, here is the booking request</h1>
+
+<p>From <%= @booking.start_date %> until <%= @booking.end_date %></p>
+
+<p>Confirmed Status: <%= @booking.confirmed %></p>
+
+<%= simple_form_for @booking do |f| %>
+  <%= f.input :confirmed, collection: ['approved', 'rejected'] %>
+  <%= f.submit "Submit"%>
+<% end %>
