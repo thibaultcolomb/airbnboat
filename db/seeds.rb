@@ -10,21 +10,23 @@
 
 require 'faker'
 
-puts 'Creating 10 fake boats...'
+puts 'Creating 10 fake stuff...'
 
-harri = User.new(
-  email: 'hbesceasdfasdli@gmail.com',
-  password: '123456haysoekso!',
-  first_name: 'Harri',
-  last_name: 'Besceli',
-  bio: 'I am a sailor',
-  age: 30,
-  license: true
-)
-harri.save!
+10.times do
+  new_user = User.new(
+    email: Faker::Internet.email,
+    password: '123456',
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    bio: Faker::Quote.mitch_hedberg,
+    age: rand(18..60),
+    license: [true, false].sample
+  )
+  new_user.save!
+end
 
 20.times do
-  boat = harri.boats.new(
+  boat = Boat.new(
     name: Faker::Creature::Animal.name,
     port: ['Los Angeles', 'Hamburg', 'Antwerp', 'Portsmouth', 'Shanghai'].sample,
     capacity: rand(1..10),
@@ -32,7 +34,21 @@ harri.save!
     price_per_day: rand(100..1000),
     license: [true, false].sample,
     description: Faker::Quote.mitch_hedberg,
-    image: 'https://source.unsplash.com/random'
+    image: 'https://source.unsplash.com/random',
+    user: User.all.sample
   )
   boat.save!
 end
+
+15.times do
+  booking = Booking.new(
+    start_date: Faker::Date.between(from: '2021-01-01', to: '2021-01-07'),
+    end_date: Faker::Date.between(from: '2021-01-08', to: '2021-03-25'),
+    user: User.all.sample,
+    boat: Boat.all.sample,
+    confirmed: [true, false].sample
+  )
+  booking.save!
+end
+
+puts 'finished fakery'
