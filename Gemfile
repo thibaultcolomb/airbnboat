@@ -33,8 +33,8 @@ gem "jbuilder"
 # gem Devise
 gem "devise"
 
-# env
-gem "dotenv-rails"
+# # env
+# gem "dotenv-rails"
 
 # cloudinary
 gem "cloudinary"
