@@ -1,8 +1,15 @@
-<h1>Boats:</h1>
+<div class="row">
+  <h1>Boats:</h1>
+  <div class="">
+    <% @boats.each do |boat| %>
+    <ul>
+      <li>
+        <div>
+          <%= boat.name %>
+        </div>
+      </li>
+    </ul>
+  <% end %>
+  </div>
 
-<% @boats.each do |boat| %>
-<ul>
-  <li> <%= boat.name %> </li>
-</ul>
-
-<% end %>
+</div>
