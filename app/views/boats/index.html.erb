@@ -1,8 +1,22 @@
-<h1>Boats:</h1>
+<h2>All the Boats:</h2>
 
-<% @boats.each do |boat| %>
+<p><%= boat.find(1).name %></p>
+
 <ul>
-  <li> <%= boat.name %> </li>
+  <li><% @boats.each do |boat| %>
+      <div class="card-trip">
+        <img class = "img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
+        <div class="card-trip-infos">
+          <div>
+            <h3><%= boat.name %></h3>
+            <div class ="card-trip-port-capacity">
+            <div><p><%= boat.port %></p></div>
+            <div><p><%= boat.capacity %></p></div>
+            </div>
+          </div>
+          <h2 class="card-trip-pricing"><%= boat.price_per_day %></h2>
+        </div>
+      </div>
+    </div>
+ <% end %> </li>
 </ul>
-
-<% end %>
