@@ -2,6 +2,10 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+# Faker
+
+gem 'faker'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
 
@@ -28,6 +32,12 @@ gem "jbuilder"
 
 # gem Devise
 gem "devise"
+
+# # env
+# gem "dotenv-rails"
+
+# cloudinary
+gem "cloudinary"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
