@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/my-bookings", to: "bookings#mybookings"
 
   resources :boats do
-    resources :bookings, only: [:index, :show, :new, :create] do
+    resources :bookings, only: [:index, :show, :new, :create, :edit, :update, :delete] do
     end
   end
 

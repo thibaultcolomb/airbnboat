@@ -24,6 +24,22 @@ class BoatsController < ApplicationController
     end
   end
 
+  def edit
+    @boat = Boat.find(params[:id])
+  end
+
+  def update
+    @boat = current_user.boats.find(params[:id])
+    @boat.update(boat_params)
+    redirect_to boat_path(@boat)
+  end
+
+  def destroy
+    @boat = current_user.boats.find(params[:id])
+    @boat.destroy
+    redirect_to boats_path, status: :see_other
+  end
+
   private
 
   def boat_params
