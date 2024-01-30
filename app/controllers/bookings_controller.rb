@@ -19,17 +19,15 @@ class BookingsController < ApplicationController
     @booking.user = current_user
 
     if @booking.save
-      redirect_to boat_path(@booking)
+      redirect_to boats_path(@booking)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-
-
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date, :boat_id, :current_user_id)
   end
 end
