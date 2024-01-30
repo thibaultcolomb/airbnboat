@@ -1,4 +1,51 @@
-<h1>My dashboard:</h1>
+
+<!-- index.html.erb -->
+
+<div class="container mt-4">
+  <h3>My Booked Boats:</h3>
+  <% if @bookings.empty? %>
+    <p>You have not received any Booking for your Boats yet.
+      <%= link_to root_path do %>
+       Boats
+       <% end %>
+    </p>
+  <% else %>
+    <div class="cards-grid mt-5">
+      <% @bookings.each do |booking| %>
+        <div class="card p-3 shadow round">
+          <div class="m-2">
+            <%= booking.boat.name %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div class="container my-4">
+  <h3>Boats That I Booked: </h3>
+  <% if @bookings&.empty? %>
+    <p>You have not booked any boat yet. Make your first booking?
+  <%= link_to root_path do %>
+  Bookings
+  <% end %>
+</div>
+    </p>
+  <% else %>
+    <div class="cards-grid mt-5">
+      <% @bookings.each do |booking| %>
+        <div class="card p-3 shadow round">
+          <div class="m-2">
+            <!-- Display booking information here -->
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="mr-4">
+
+</div>
+
 
 <h3>My boats to rent:</h3>
 <ul>
@@ -10,3 +57,4 @@
   </li>
   <% end  %>
 </ul>
+
