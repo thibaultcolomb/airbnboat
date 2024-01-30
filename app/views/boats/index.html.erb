@@ -1,15 +1,19 @@
-<div class="row">
-  <h1>Boats:</h1>
-  <div class="">
-    <% @boats.each do |boat| %>
-    <ul>
-      <li>
-        <div>
-          <%= boat.name %>
-        </div>
-      </li>
-    </ul>
-  <% end %>
-  </div>
+<h2>All the Boats:</h2>
 
-</div>
+<div class ="cards">
+ <div class="card-trip" >
+  <% @boats.each do |boat| %>
+        <img class = "img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
+        <div class="card-trip-infos">
+          <div>
+            <h3><%= boat.name %></h3>
+            <div class ="card-trip-port-capacity">
+            <div><p><%= boat.port %></p></div>
+            <div><p><%= boat.capacity %></p></div>
+            <div><%= link_to "View boat", boat_path(boat) %></div>
+            </div>
+          </div>
+          <h2 class="card-trip-pricing"><%= boat.price_per_day %></h2>
+        </div>
+         <% end %>
+      </div>
