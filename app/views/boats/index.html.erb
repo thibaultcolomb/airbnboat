@@ -10,7 +10,7 @@
             <div class ="card-trip-port-capacity">
             <div><p><%= boat.port %></p></div>
             <div><p><%= boat.capacity %></p></div>
-            <div><%= link_to "View boat", boat_path(@boat) %></div>
+            <div><%= link_to "View boat", boat_path(boat) %></div>
             </div>
           </div>
           <h2 class="card-trip-pricing"><%= boat.price_per_day %></h2>
