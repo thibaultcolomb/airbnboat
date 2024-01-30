@@ -1,0 +1,12 @@
+
+  <h2 class="mb-3">Book A Boat</h2>
+  <%= simple_form_for [@boat, @booking] do |f| %>
+  <%= f.input :start_date, as: :date %>
+
+  <%= f.input :end_date, as: :date %>
+
+  <%= f.button :submit, class: 'btn btn-primary' %>
+
+  <% end %>
+  <%= link_to "Back to Boats", root_path, class: "btn btn-secondary mt-5" %>
+</div>
