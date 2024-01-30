@@ -1,3 +1,4 @@
+
 <!-- index.html.erb -->
 
 <div class="container mt-4">
@@ -44,3 +45,16 @@
   <div class="mr-4">
 
 </div>
+
+
+<h3>My boats to rent:</h3>
+<ul>
+  <% current_user.boats.each do |boat| %>
+  <li>
+    <%= link_to boat.name, boat_path(boat)%>
+    <%= link_to "Edit", edit_boat_path(boat)%>
+    <%= link_to "Delete", boat_path(boat), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}%>
+  </li>
+  <% end  %>
+</ul>
+

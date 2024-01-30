@@ -1,0 +1,19 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-6">
+    <h2>Edit your boat:</h2>
+    <%= simple_form_for @boat do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <%= f.input :name %>
+    <%= f.input :port %>
+    <%= f.input :capacity %>
+    <%= f.input :price_per_day %>
+    <%= f.input :license %>
+    <%= f.input :description %>
+    <%= f.input :image %>
+    <%= f.input :photos, as: :file, input_html: {multiple: true} %>
+    <%= f.submit "Add a boat" %>
+    <% end %>
+  </div>
+</div>
