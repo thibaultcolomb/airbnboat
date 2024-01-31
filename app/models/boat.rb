@@ -8,5 +8,5 @@ class Boat < ApplicationRecord
   validates :price_per_day, presence: true
   validates :port, presence: true
   # geocoded_by :port
-  after_validation :geocode, if: :will_save_change_to_port?
+  # after_validation :geocode, if: :will_save_change_to_port?
 end
