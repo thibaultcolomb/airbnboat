@@ -7,16 +7,15 @@ class BookingsController < ApplicationController
     @boat = Boat.find(params[:boat_id])
   end
 
-  def edit
-    @booking = Booking.find(params[:id])
-  end
+  # def edit
+  #   @booking = Booking.find(params[:id])
+  # end
 
-  def update
-    @booking = Booking.find(params[:id])
-    @booking.update(booking_params)
-    redirect_to booking_path(@booking)
-  end
-
+  # def update
+  #   @booking = Booking.find(params[:id])
+  #   @booking.update(booking_params)
+  #   redirect_to booking_path(@booking)
+  # end
 
   def new
     @boat = Boat.find(params[:boat_id])
@@ -30,7 +29,7 @@ class BookingsController < ApplicationController
     @booking.user = current_user
 
     if @booking.save
-      redirect_to boats_path(@booking)
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end
