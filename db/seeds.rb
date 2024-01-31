@@ -36,7 +36,6 @@ require 'faker'
 #     price_per_day: rand(100..1000),
 #     license: [true, false].sample,
 #     description: Faker::Quote.mitch_hedberg,
-#     image: 'https://source.unsplash.com/random',
 #     user: User.all.sample
 #   )
 #   boat.save!
