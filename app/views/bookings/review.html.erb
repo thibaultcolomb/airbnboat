@@ -1,0 +1,11 @@
+<h1>Boat Booking Request</h1>
+
+<p><%= @booking.user.first_name %> <%= @booking.user.last_name %> wants to book your boat from <%= @booking.start_date.strftime("%Y-%m-%d") %> until <%= @booking.end_date.strftime("%Y-%m-%d") %></p>
+
+
+<p>The current status of the booking request is: <%= @booking.confirmed %></p>
+
+<%= simple_form_for @booking do |f| %>
+  <%= f.input :confirmed, collection: ['approved', 'rejected'] %>
+  <%= f.submit "Submit"%>
+<% end %>
