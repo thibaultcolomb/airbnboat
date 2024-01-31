@@ -3,4 +3,6 @@ class PagesController < ApplicationController
   def home
     @boats = Boat.last(3)
   end
+
+  
 end
