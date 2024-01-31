@@ -65,7 +65,7 @@
     <% boat.bookings.each do |booking| %>
       <li>
         <p>Booking from <%= booking.user.first_name %> <%= booking.user.last_name %></p>
-        <%= link_to 'view booking', booking_path(booking) %>
+        <%= link_to 'view booking', review_path(booking) %>
       </li>
     <% end %>
   <% end  %>

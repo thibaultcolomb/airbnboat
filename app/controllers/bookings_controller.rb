@@ -11,10 +11,14 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
   end
 
+  def review
+    @booking = Booking.find(params[:id])
+  end
+
   def update
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
-    redirect_to booking_path(@booking)
+    redirect_to review_path(@booking)
   end
 
 
