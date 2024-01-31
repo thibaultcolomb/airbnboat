@@ -58,3 +58,15 @@
   <% end  %>
 </ul>
 
+
+<h3>Requests to book my boats</h3>
+<ul>
+  <% User.find(2).boats.each do |boat| %>
+    <% boat.bookings.each do |booking| %>
+      <li>
+        <p>Booking from <%= booking.user.first_name %> <%= booking.user.last_name %></p>
+        <%= link_to 'view booking', booking_path(booking) %>
+      </li>
+    <% end %>
+  <% end  %>
+</ul>
