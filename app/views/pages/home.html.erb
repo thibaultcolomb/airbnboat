@@ -9,8 +9,8 @@
   <h2>Find a boat</h2>
   <div class ="boats">
     <div class="cards">
+      <% @boats.each do |boat| %>
        <div class="card-trip" >
-        <% @boats.each do |boat| %>
           <% boat.photos.each do |photo| %>
             <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
           <% end %>
@@ -25,8 +25,8 @@
           </div>
           <h2 class="card-trip-pricing"><%= boat.price_per_day %></h2>
         </div>
-         <% end %>
       </div>
+      <% end %>
    </div>
 
     <div class="button-more-boats">
@@ -53,3 +53,4 @@
     </a>
   </div>
 <% end %>
+</div>
