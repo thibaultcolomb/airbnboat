@@ -11,6 +11,16 @@ class BookingsController < ApplicationController
   #   @booking = Booking.find(params[:id])
   # end
 
+  def review
+    @booking = Booking.find(params[:id])
+  end
+
+  def approve
+    @booking = Booking.find(params[:id])
+    @booking.update(booking_params)
+    redirect_to review_path(@booking)
+  end
+
   # def update
   #   @booking = Booking.find(params[:id])
   #   @booking.update(booking_params)

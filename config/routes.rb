@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "bookings#index"
   get "/bookings/:id", to: "bookings#edit", as: :booking
   patch "/bookings/:id", to: "bookings#update"
+  get "/bookings/:id/review", to: "bookings#review", as: :review
 
   # Defines the root path route ("/")
 # config/routes.rb
