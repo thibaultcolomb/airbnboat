@@ -1,11 +1,17 @@
-<h1>Boat Booking Request</h1>
 
-<p><%= @booking.user.first_name %> <%= @booking.user.last_name %> wants to book your boat from <%= @booking.start_date.strftime("%Y-%m-%d") %> until <%= @booking.end_date.strftime("%Y-%m-%d") %></p>
+<div class="container">
+<h1>Booking request for your boat <i><%= @booking.boat.name %></i></h1>
+  <div class="card" style='padding: 15px'>
+    <p>Requested By: <%= @booking.user.first_name %> <%= @booking.user.last_name %> </p>
+    <p>Dates: <%= @booking.start_date.strftime("%Y-%m-%d") %> until <%= @booking.end_date.strftime("%Y-%m-%d") %></p>
 
 
-<p>The current status of the booking request is: <%= @booking.confirmed %></p>
+    <p><i>The current status of the booking request is: <b><%= @booking.confirmed %></b></i></p>
 
-<%= simple_form_for @booking do |f| %>
-  <%= f.input :confirmed, collection: ['approved', 'rejected'] %>
-  <%= f.submit "Submit"%>
-<% end %>
+    <%= simple_form_for @booking do |f| %>
+      <%= f.input :confirmed, collection: ['approved', 'rejected'], label: "Review the booking" %>
+      <%= f.submit "Submit"%>
+    <% end %>
+  </div>
+  <button class='btn btn-info' style='margin-top: 20px'><%= link_to "Back to Dashboard", dashboard_path%></button>
+</div>
