@@ -1,19 +1,24 @@
-<h2>All the Boats:</h2>
+<h2>Browse boats:</h2>
 
-<div class ="cards">
- <div class="card-trip" >
-  <% @boats.each do |boat| %>
-        <img class = "img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
-        <div class="card-trip-infos">
-          <div>
-            <h3><%= boat.name %></h3>
-            <div class ="card-trip-port-capacity">
-            <div><p><%= boat.port %></p></div>
-            <div><p><%= boat.capacity %></p></div>
-            <div><%= link_to "View boat", boat_path(boat) %></div>
+  <div class ="cards ">
+   <div class="card-trip" >
+    <% @boats.each do |boat| %>
+          <% if boat.photos.first.nil? %>
+            <img src="https://res.cloudinary.com/dzkglhdat/image/upload/v1706697996/no_image_b97fcc.png" alt="no_img">
+          <% else %>
+            <%= cl_image_tag(boat.photos.first.key, height: 200, crop: :fill) %>
+          <% end  %>
+          <div class="card-trip-infos">
+            <div>
+              <h3><%= boat.name %></h3>
+              <div class ="card-trip-port-capacity">
+                <div><p><%= boat.port %></p></div>
+                <div><p><%= boat.capacity %></p></div>
+                <div><%= link_to "View boat", boat_path(boat) %></div>
+              </div>
             </div>
+            <h2 class="card-trip-pricing"><%= boat.price_per_day %></h2>
           </div>
-          <h2 class="card-trip-pricing"><%= boat.price_per_day %></h2>
-        </div>
-         <% end %>
-      </div>
+        <% end %>
+    </div>
+  </div>
