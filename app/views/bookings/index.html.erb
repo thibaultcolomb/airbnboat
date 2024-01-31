@@ -13,7 +13,7 @@
       <% else %>
         <div class="cards-grid mt-3">
           <% current_user.boats.each do |boat| %>
-            <% boat.bookings.each do |booking| %>
+            <% boat.bookings.reverse_each do |booking| %>
             <div class="d-flex p-3 mb-2 shadow round">
               <div>
                 <% if boat.photos.first %>
@@ -48,7 +48,7 @@
         <%= link_to "Browse boats", boats_path %>
       <% else %>
         <div class="cards-grid mt-3">
-          <% @bookings.each do |booking| %>
+          <% @bookings.reverse_each do |booking| %>
           <% if booking.user == current_user %>
             <div class=" p-3 shadow round mb-2">
               <div class="m-2">
