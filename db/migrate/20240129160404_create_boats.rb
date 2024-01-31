@@ -8,7 +8,6 @@ class CreateBoats < ActiveRecord::Migration[7.1]
       t.integer :price_per_day
       t.string :license
       t.text :description
-      t.string :image
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
