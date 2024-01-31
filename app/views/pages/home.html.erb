@@ -9,59 +9,38 @@
   <h2>Find a boat</h2>
   <div class ="boats">
     <div class="cards">
-      <div class="card-trip">
-        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+      <% @boats.each do |boat| %>
+       <div class="card-trip" >
+          <% boat.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+          <% end %>
         <div class="card-trip-infos">
           <div>
-            <h2>Title here</h2>
-            <p>port</p>
-            <p>capacitiy</p>
-          </div>
-          <h2 class="card-trip-pricing">£99.99</h2>
-        </div>
-      </div>
-
-      <div class="card-trip">
-        <img class="img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
-        <div class="card-trip-infos">
-          <div>
-            <h2>Title here</h2>
+            <h3><%= boat.name %></h3>
             <div class ="card-trip-port-capacity">
-            <div><p>port</p></div>
-            <div><p>capacitiy</p></div>
+            <div><p><%= boat.port %></p></div>
+            <div><p><%= boat.capacity %></p></div>
+            <div><%= link_to "View boat", boat_path(boat) %></div>
             </div>
           </div>
-          <h2 class="card-trip-pricing">£99.99</h2>
+          <h2 class="card-trip-pricing"><%= boat.price_per_day %></h2>
         </div>
       </div>
-
-
-      <div class="card-trip">
-        <img class = "img" src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
-        <div class="card-trip-infos">
-          <div>
-            <h2>Title here</h2>
-            <div class ="card-trip-port-capacity">
-            <div><p>port</p></div>
-            <div><p>capacitiy</p></div>
-            </div>
-          </div>
-          <h2 class="card-trip-pricing">£99.99</h2>
-        </div>
-      </div>
-    </div>
+      <% end %>
+   </div>
 
     <div class="button-more-boats">
-      <%= link_to "Browse more boats", boats_path, class: "btn btn-primary" %>
+      <%= link_to "Browse more boats", boats_path, class: "btn-flat" %>
    </div>
-  </div>
+
 
   <div class="boat-offer">
     <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
     <div class="boat-offer-infos">
       <h2>Offer your boat</h2>
       <p>Offer your boat for boat-enthusiasts easily</p>
-      <a class="btn-flat" href="#">offer boat</a>
+    <%= link_to "offer your boat", new_boat_path, class: "btn-flat" %>
+
     </div>
   </div>
 </div>
@@ -74,3 +53,4 @@
     </a>
   </div>
 <% end %>
+</div>

@@ -1,0 +1,23 @@
+
+
+<h1>Boat Booking Request</h1>
+
+<p><%= @booking.user.first_name %> <%= @booking.user.last_name %> wants to book your boat from <%= @booking.start_date.strftime("%Y-%m-%d") %> until <%= @booking.end_date.strftime("%Y-%m-%d") %></p>
+
+
+<p>The current status of the booking request is: <%= @booking.confirmed %></p>
+
+  <h2 class="mb-3">Change your booking request</h2>
+  <%= simple_form_for [@boat, @booking] do |f| %>
+  <%= f.input :start_date, as: :date %>
+
+  <%= f.input :end_date, as: :date %>
+
+  <%= f.button :submit, class: 'btn btn-primary' %>
+
+
+  <% end %>
+  <%= link_to "Back to Boats", root_path, class: "btn btn-secondary mt-5" %>
+</div>
+
+
