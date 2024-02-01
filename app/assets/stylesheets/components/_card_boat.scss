@@ -17,6 +17,7 @@
   background: white;
   margin: 20px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  position: relative;
 }
 
 .card-trip img {
@@ -45,3 +46,11 @@
   align-items: flex-end;
   position: relative;
 }
+
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  }
