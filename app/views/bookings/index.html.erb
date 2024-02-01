@@ -73,8 +73,12 @@
                 <p class="m-0">Status: <%= booking.confirmed %></p>
               </div>
               <div class="d-flex justify-content-end">
-                <%= link_to "Edit", edit_boat_booking_path(booking.boat,booking), class: "me-2 text-info text-decoration-none"%>
-                <%= link_to "Delete", boat_booking_path(booking.boat,booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2 text-danger text-decoration-none"%>
+                <%= link_to edit_boat_booking_path(booking.boat,booking), class: "me-2" do %>
+                  <i class="fa-regular fa-pen-to-square"></i>
+                <% end %>
+                <%= link_to boat_booking_path(booking.boat,booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2" do %>
+                  <i class="fa-regular fa-trash-can"></i>
+                <% end %>
               </div>
 
             </div>
@@ -105,8 +109,12 @@
             <%= link_to boat.name, boat_path(boat), class: "text-decoration-none"%>
           </div>
           <div class="d-flex justify-content-end">
-            <%= link_to "Edit", edit_boat_path(boat), class: "me-2 text-info text-decoration-none"%>
-            <%= link_to "Delete", boat_path(boat), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2 text-danger text-decoration-none"%>
+            <%= link_to edit_boat_path(boat), class: "me-2" do %>
+              <i class="fa-regular fa-pen-to-square"></i>
+            <% end %>
+            <%= link_to  boat_path(boat), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2" do %>
+              <i class="fa-regular fa-trash-can"></i>
+            <% end %>
           </div>
         </li>
         <% end  %>
