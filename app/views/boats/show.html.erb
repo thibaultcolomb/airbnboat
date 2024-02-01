@@ -1,11 +1,11 @@
 <div class="row justify-content-center mt-3">
   <div class="col-6">
-    <h2><%= @boat.name %></h2>
+    <h5><%= @boat.name %></h5>
 
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
+  <div class="carousel-inner" style="overflow: hidden; height: 400px;">
     <%@boat.photos.reverse_each do |photo| %>
-      <%= cl_image_tag(photo.key, height: 300, crop: :fill, class: "carousel-item active")%>
+      <%= cl_image_tag(photo.key, class: "carousel-item active")%>
     <% end %>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
