@@ -3,9 +3,18 @@
   <div class="searchbar">
     <%= form_with url: boats_path, method: :get, class: "d-flex" do %>
       <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search by location, boat type..." %>
+        <%= text_field_tag :start_date,
+          params[:start_date],
+          data: { controller: "datepicker" }, placeholder: "From..."  %>
+        <%= text_field_tag :end_date,
+          params[:end_date],
+          data: { controller: "datepicker" }, placeholder: "Until"  %>
+
       <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
     <% end %>
   </div>
+
+
   <div class ="boats">
     <div class ="cards ">
     <% @boats.each do |boat| %>
@@ -34,7 +43,6 @@
                     <% end %>
                     <% average_rating = total_rating.to_f / number_of_ratings %>
                     <div><p><%= display_star_rating(average_rating) %> <%= number_of_ratings%> reviews</p></div>
-
                   <% else %>
                     <div><p>No ratings yet for this boat</p></div>
                   <% end %>
