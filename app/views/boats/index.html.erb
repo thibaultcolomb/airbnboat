@@ -4,13 +4,16 @@
     <%= form_with url: boats_path, method: :get, class: "d-flex" do %>
 
       <%= text_field_tag :query, params[:query], class: "form-control border-light", placeholder: "Search by location, boat type..." %>
+        <div class="d-flex col-4">
         <%= text_field_tag :start_date,
           params[:start_date],
-          data: { controller: "datepicker" }, placeholder: "From..."  %>
+          data: { controller: "datepicker" }, placeholder: "From...", class: "form-control border-light ms-1" %>
         <%= text_field_tag :end_date,
           params[:end_date],
-          data: { controller: "datepicker" }, placeholder: "Until"  %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+          data: { controller: "datepicker" }, placeholder: "Until", class: "form-control border-light ms-1"  %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary ms-1" %>
+        </div>
+
     <% end %>
   </div>
 
