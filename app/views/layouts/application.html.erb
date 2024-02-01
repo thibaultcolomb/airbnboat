@@ -18,32 +18,30 @@
     <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
       <div class="container-fluid">
           <%= link_to root_path, class: "nav-link" do %>
-            <i class="fa-solid fa-sailboat" style="font-size: 30px;"></i>
+            <i class="fa-solid fa-sailboat text-primary" style="font-size: 36px;"></i>
           <% end %>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-        </button>
+        </button> %>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
-
-            <li>
-              <%= link_to "Browse boats", boats_path, class: "nav-link" %>
-            </li>
-
-            <li>
-              <%= link_to "My bookings", dashboard_path, class: "nav-link" %>
-            </li>
-
+              <li>
+                <%= link_to "Browse boats", boats_path, class: "nav-link text-secondary" %>
+              </li>
 
               <li>
-                <div class="d-flex border rounded-pill">
+                <%= link_to "My bookings", dashboard_path, class: "nav-link text-secondary" %>
+              </li>
+
+              <li>
+                <div class="d-flex border border-primary rounded-pill">
                   <% if user_signed_in? %>
-                    <p class="nav-link mb-0">Hello, <%= current_user.first_name %>! |</p>
-                    <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Logout ?"}, class: "nav-link ps-0" %>
+                    <p class="nav-link mb-0 text-secondary">Hello, <strong><%= current_user.first_name %></strong>! |</p>
+                    <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete, turbo_confirm: "Logout ?"}, class: "nav-link ps-0 text-light" %>
                   <% else %>
-                    <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+                    <%= link_to "Sign in", new_user_session_path, class: "nav-link text-light" %>
                   <% end %>
                 </div>
 
