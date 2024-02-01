@@ -2,10 +2,18 @@
   <h5 class="text-primary bg-third">Find a boat</h5>
   <div class="searchbar">
     <%= form_with url: boats_path, method: :get, class: "d-flex" do %>
+
       <%= text_field_tag :query, params[:query], class: "form-control border-light", placeholder: "Search by location, boat type..." %>
+        <%= text_field_tag :start_date,
+          params[:start_date],
+          data: { controller: "datepicker" }, placeholder: "From..."  %>
+        <%= text_field_tag :end_date,
+          params[:end_date],
+          data: { controller: "datepicker" }, placeholder: "Until"  %>
       <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
     <% end %>
   </div>
+
 
 
 <%# Map %>
@@ -14,9 +22,6 @@
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 </div>
-
-
-
 
   <div class ="boats">
     <div class ="cards ">
@@ -30,6 +35,7 @@
             <% end  %>
       </div>
             <div class="card-trip-infos">
+
               <div class="row">
                 <h6 class="mb-1"><%= boat.name %></h6>
 
@@ -41,6 +47,7 @@
                       <% total_rating += review.rating %>
                       <% number_of_ratings += 1 %>
                     <% end %>
+
                   <% end %>
                   <% average_rating = total_rating.to_f / number_of_ratings %>
                   <div class="d-flex">

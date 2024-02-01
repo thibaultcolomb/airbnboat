@@ -1,8 +1,16 @@
 class BoatsController < ApplicationController
 
   def index
-    if params[:query].present?
+    if params[:query].present? && params[:start_date].present? && params[:end_date].present?
+      @boats = Boat.search_by_name_port_and_category_and_description(params[:query]).where.not(id: Boat.joins(:bookings)
+      .where("bookings.start_date < ? AND bookings.end_date > ?", params[:end_date], params[:start_date])
+      .select(:id))
+    elsif params[:query].present?
       @boats = Boat.search_by_name_port_and_category_and_description(params[:query])
+    elsif params[:start_date].present? && params[:end_date].present?
+      @boats = Boat.where.not(id: Boat.joins(:bookings)
+                                     .where("bookings.start_date < ? AND bookings.end_date > ?", params[:end_date], params[:start_date])
+                                     .select(:id))
     else
       @boats = Boat.all
     end
