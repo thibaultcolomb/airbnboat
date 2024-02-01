@@ -50,6 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_01_100606) do
     t.integer "price_per_day"
     t.string "license"
     t.text "description"
+    t.string "image"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

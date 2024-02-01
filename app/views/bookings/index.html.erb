@@ -15,21 +15,32 @@
           <% current_user.boats.each do |boat| %>
             <% boat.bookings.reverse_each do |booking| %>
             <div class="d-flex p-3 mb-2 shadow round">
-              <div>
+              <div class="p-2">
                 <% if boat.photos.first %>
-                  <%= cl_image_tag(boat.photos.first.key, height: 120, width: 80, crop: :fill) %>
+                  <%= cl_image_tag(boat.photos.first.key, height: 150, width: 120, crop: :fill) %>
                 <% end %>
               </div>
-              <div class="m-2">
-                <p class="mb-0"><%= booking.boat.name %></p>
-                <p class="mb-0"><%= booking.user.first_name %></p>
-                <p class="mb-0"><%= booking.user.last_name %></p>
+              <div class="p-2 m-0">
+                <p class="mb-0"><strong><%= booking.boat.name %></strong></p>
+                <p class="mb-0">First name: <%= booking.user.first_name %></p>
+                <p class="mb-0">Last name: <%= booking.user.last_name %></p>
                 <p class="mb-0">From: <%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></p>
                 <p class="mb-0">To: <%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y") %></p>
-                <%= link_to 'view booking', review_path(booking) %>
-                <div>
-                  <p>Status: <%= booking.confirmed %></p>
+                <div class="d-flex justify-content-between">
+                  <%= link_to 'Approve booking', review_path(booking), class: "btn btn-primary" %>
+                  <div style="color:
+                  <% if booking.confirmed == 'approved' %>
+                  green
+                  <% elsif booking.confirmed == 'pending' %>
+                  yellow
+                  <% else %>
+                  red
+                  <% end %>;
+              ">
+              <p class="m-0">Status: <%= booking.confirmed %></p>
                 </div>
+              </div>
+
 
               </div>
             </div>
@@ -50,23 +61,32 @@
           <% if booking.user == current_user %>
             <div class=" p-3 shadow round mb-2">
               <div class="m-2">
-                  <%= booking.boat.name %>
+                  <p><strong><%= booking.boat.name %></strong></p>
                   <p class="mb-0">From: <%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></p>
                   <p class="mb-0">To: <%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y") %></p>
               </div>
-
-              <div <% if booking.confirmed == "pending" %>
-                    class="flash flash-warning show ps-2 py-1"
-                  <% else %>
-                    class="flash flash-success show ps-2 py-1"
-                  <%end %>
-              >
-                <p class="m-0">Status: <%= booking.confirmed %></p>
+              <div style="color:
+              <% if booking.confirmed == 'approved' %>
+              green
+              <% elsif booking.confirmed == 'pending' %>
+              yellow
+              <% else %>
+              red
+              <% end %>;
+              ">
+              <p class="m-0">Status: <%= booking.confirmed %></p>
               </div>
-              <div class="d-flex">
-                <%= link_to "Edit", edit_boat_booking_path(booking.boat,booking), class: "me-2 text-info text-decoration-none"%>
-                <%= link_to "Delete", boat_booking_path(booking.boat,booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2 text-danger text-decoration-none"%>
+
+              <div>
                 <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking) %>
+                <div class="d-flex justify-content-end">
+                  <%= link_to edit_boat_booking_path(booking.boat,booking), class: "me-2" do %>
+                    <i class="fa-regular fa-pen-to-square"></i>
+                  <% end %>
+                  <%= link_to boat_booking_path(booking.boat,booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2" do %>
+                    <i class="fa-regular fa-trash-can"></i>
+                  <% end %>
+                </div>
               </div>
 
             </div>
@@ -96,13 +116,27 @@
           <div>
             <%= link_to boat.name, boat_path(boat), class: "text-decoration-none"%>
           </div>
-          <div class="d-flex">
-            <%= link_to "Edit", edit_boat_path(boat), class: "me-2 text-info text-decoration-none"%>
-            <%= link_to "Delete", boat_path(boat), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2 text-danger text-decoration-none"%>
+          <div class="d-flex justify-content-end">
+            <%= link_to edit_boat_path(boat), class: "me-2" do %>
+              <i class="fa-regular fa-pen-to-square"></i>
+            <% end %>
+            <%= link_to  boat_path(boat), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2" do %>
+              <i class="fa-regular fa-trash-can"></i>
+            <% end %>
           </div>
         </li>
         <% end  %>
       </ul>
     <% end  %>
   </div>
+</div>
+
+
+<!--------------------------------->
+<div data-controller="boat-cards">
+
+</div>
+
+<div data-controller="boat-details" style="display: none;">
+
 </div>

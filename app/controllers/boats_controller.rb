@@ -1,7 +1,11 @@
 class BoatsController < ApplicationController
 
   def index
-    @boats = Boat.all
+    if params[:query].present?
+      @boats = Boat.search_by_name_port_and_category_and_description(params[:query])
+    else
+      @boats = Boat.all
+    end
   end
 
   def show
@@ -18,7 +22,7 @@ class BoatsController < ApplicationController
     @boat.save
 
     if @boat.save
-      redirect_to boats_path
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end

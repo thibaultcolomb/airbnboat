@@ -1,14 +1,22 @@
 <div class="main mt-3">
-<h2>Browse boats:</h2>
+  <h2>Browse boats:</h2>
+  <div class="searchbar">
+    <%= form_with url: boats_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Search by location, boat type..." %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
   <div class ="boats">
     <div class ="cards ">
     <% @boats.each do |boat| %>
     <div class="card-trip" >
+      <div class="d-flex">
             <% if boat.photos.first.nil? %>
               <img src="https://res.cloudinary.com/dzkglhdat/image/upload/v1706697996/no_image_b97fcc.png" alt="no_img">
             <% else %>
               <%= cl_image_tag(boat.photos.first.key, height: 200, crop: :fill) %>
             <% end  %>
+      </div>
             <div class="card-trip-infos">
               <div>
                 <h3><%= boat.name %></h3>
