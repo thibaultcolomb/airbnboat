@@ -1,6 +1,6 @@
 
 <div class="container">
-<h1>Booking request for your boat <i><%= @booking.boat.name %></i></h1>
+<h2 class="mb-3">Booking request for your boat <i><%= @booking.boat.name %></i></h1>
   <div class="card" style='padding: 15px'>
     <p>Requested By: <%= @booking.user.first_name %> <%= @booking.user.last_name %> </p>
     <p>Dates: <%= @booking.start_date.strftime("%Y-%m-%d") %> until <%= @booking.end_date.strftime("%Y-%m-%d") %></p>
@@ -10,8 +10,9 @@
 
     <%= simple_form_for @booking do |f| %>
       <%= f.input :confirmed, collection: ['approved', 'rejected'], label: "Review the booking" %>
-      <%= f.submit "Submit"%>
+
+      <%= f.submit "Submit", class: "btn btn-primary mt-3 mr-2" %>
     <% end %>
   </div>
-  <button class='btn btn-info' style='margin-top: 20px'><%= link_to "Back to Dashboard", dashboard_path%></button>
+  <%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-secondary mt-5"%>
 </div>
