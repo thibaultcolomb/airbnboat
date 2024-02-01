@@ -34,4 +34,13 @@
     <%= link_to "Book this boat", new_boat_booking_path(@boat), class: "btn btn-primary" %>
 
   </div>
+    <h2>Reviews for <%= @boat.name %></h2>
+    <% @boat.bookings.each do |booking| %>
+      <div class="card">
+        <p><%= display_star_rating(booking.reviews.first.rating) %></p>
+        <p>Reviewed on <%= booking.reviews.first.created_at.strftime("%B %e, %Y") %></p>
+        <p><i><%= booking.reviews.first.description %></i></p>
+      </div>
+    <% end %>
+
 </div>

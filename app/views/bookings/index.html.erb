@@ -66,6 +66,7 @@
               <div class="d-flex">
                 <%= link_to "Edit", edit_boat_booking_path(booking.boat,booking), class: "me-2 text-info text-decoration-none"%>
                 <%= link_to "Delete", boat_booking_path(booking.boat,booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2 text-danger text-decoration-none"%>
+                <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking) %>
               </div>
 
             </div>

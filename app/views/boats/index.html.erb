@@ -15,6 +15,21 @@
                 <div class ="card-trip-port-capacity">
                   <div><p><%= boat.port %></p></div>
                   <div><p><%= boat.capacity %></p></div>
+                  <% if boat.bookings.any? && boat.bookings.first.reviews.present? %>
+                    <% number_of_ratings = 0 %>
+                    <% total_rating = 0 %>
+                    <% boat.bookings.each do |booking| %>
+                      <% booking.reviews.each do |review| %>
+                        <% total_rating += review.rating %>
+                        <% number_of_ratings += 1 %>
+                      <% end %>
+                    <% end %>
+                    <% average_rating = total_rating.to_f / number_of_ratings %>
+                    <div><p><%= display_star_rating(average_rating) %> <%= number_of_ratings%> reviews</p></div>
+
+                  <% else %>
+                    <div><p>No ratings yet for this boat</p></div>
+                  <% end %>
                   <div><%= link_to "View boat", boat_path(boat) %></div>
                 </div>
               </div>
