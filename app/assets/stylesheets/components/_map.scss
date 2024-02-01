@@ -2,7 +2,12 @@
   max-width: 200px;
 }
 
-.mapboxgl-popup-content {
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
+.mapboxgl-popup-content p {
+  text-align: left;
+  font-family: 'Raleway', sans-serif;
+}
+
+.mapboxgl-popup-content h2 {
+    text-align: left;
+    font-family: "Nunito", "Helvetica", "sans-serif";
 }

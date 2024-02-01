@@ -1,4 +1,20 @@
+ <% if boat.photos.first.nil? %>
+  <img src="https://res.cloudinary.com/dzkglhdat/image/upload/v1706697996/no_image_b97fcc.png" alt="no_img">
+ <% else %>
+  <%= cl_image_tag(boat.photos.first.key, height: 200, crop: :fill) %>
+<% end  %>
+
 <h2><%= boat.name %></h2>
-<p><%= boat.port %></p>
-<p><%= boat.capacity %></p>
-<p><%= boat.price_per_day %></p>
+<div class="port">
+  <i class="fa-solid fa-location-dot"></i>
+  <p><%= boat.port %></p>
+</div>
+<div class="capacity">
+  <i class="fa-solid fa-people-group"></i>
+  <p><%= boat.capacity %></p>
+</div>
+<div class="price">
+<i class="fa-solid fa-coins"></i>
+<p><%= boat.price_per_day %> €</p>
+</div>
+ <div><%= link_to "View boat", boat_path(boat) %></div>
