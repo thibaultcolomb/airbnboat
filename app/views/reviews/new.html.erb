@@ -1,0 +1,10 @@
+
+<div>
+  <h2 class="mb-3">Review</h2>
+    <%= simple_form_for [@boat, @booking, @review] do |f| %>
+    <%= f.input :rating, collection: 1..5, as: :radio_buttons %>
+    <%= f.input :description, as: :text %>
+    <%= f.button :submit, class: "btn btn-primary mt-3" %>
+    <% end %>
+    <%= link_to "Back to Boats", root_path, class: "btn btn-secondary mt-5" %>
+</div>

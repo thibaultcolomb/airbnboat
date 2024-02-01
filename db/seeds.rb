@@ -52,7 +52,7 @@ require 'faker'
 #   booking.save!
 # end
 
-2.times do
+3.times do
   booking = Booking.new(
     start_date: Faker::Date.between(from: '2021-01-01', to: '2021-01-07'),
     end_date: Faker::Date.between(from: '2021-01-08', to: '2021-03-25'),
@@ -61,6 +61,15 @@ require 'faker'
     confirmed: [true, false].sample
   )
   booking.save!
+end
+
+Booking.all.each do |booking|
+  review = Review.new(
+    rating: rand(1..5),
+    description: Faker::Quote.mitch_hedberg,
+    booking: booking
+  )
+  review.save!
 end
 
 puts 'finished fakery'
