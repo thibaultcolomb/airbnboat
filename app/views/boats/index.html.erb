@@ -1,5 +1,5 @@
 <div class="main mt-4">
-  <h5 class="text-primary bg-third">Find a boat</h5>
+  <h5 class="text-primary bg-third text-center">Find a boat</h5>
   <div class="searchbar">
     <%= form_with url: boats_path, method: :get, class: "d-flex" do %>
 
@@ -17,7 +17,8 @@
 
 
 <%# Map %>
-<div style="width: 100%; height: 600px;"
+<div class="map">
+<div style="width: 75%; height: 600px; margin: 0 auto;"
   data-controller="map"
   data-map-markers-value="<%= @markers.to_json %>"
   data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
