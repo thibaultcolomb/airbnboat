@@ -27,19 +27,19 @@ require 'faker'
 #   new_user.save!
 # end
 
-# 20.times do
-#   boat = Boat.new(
-#     name: Faker::Creature::Animal.name,
-#     port: ['Los Angeles', 'Hamburg', 'Antwerp', 'Portsmouth', 'Shanghai'].sample,
-#     capacity: rand(1..10),
-#     category: ['Sailboat', 'Motorboat', 'Catamaran', 'Yacht', 'Dinghy'].sample,
-#     price_per_day: rand(100..1000),
-#     license: [true, false].sample,
-#     description: Faker::Quote.mitch_hedberg,
-#     user: User.all.sample
-#   )
-#   boat.save!
-# end
+5.times do
+   boat = Boat.new(
+     name: Faker::Creature::Animal.name,
+     port: ['Los Angeles', 'Hamburg', 'Antwerp', 'Portsmouth', 'Shanghai'].sample,
+     capacity: rand(1..10),
+     category: ['Sailboat', 'Motorboat', 'Catamaran', 'Yacht', 'Dinghy'].sample,
+    price_per_day: rand(100..1000),
+    license: [true, false].sample,
+    description: Faker::Quote.mitch_hedberg,
+    user: User.all.sample
+  )
+  boat.save!
+ end
 
 # 15.times do
 #   booking = Booking.new(
@@ -52,7 +52,7 @@ require 'faker'
 #   booking.save!
 # end
 
-2.times do
+3.times do
   booking = Booking.new(
     start_date: Faker::Date.between(from: '2021-01-01', to: '2021-01-07'),
     end_date: Faker::Date.between(from: '2021-01-08', to: '2021-03-25'),
@@ -61,6 +61,15 @@ require 'faker'
     confirmed: [true, false].sample
   )
   booking.save!
+end
+
+Booking.all.each do |booking|
+  review = Review.new(
+    rating: rand(1..5),
+    description: Faker::Quote.mitch_hedberg,
+    booking: booking
+  )
+  review.save!
 end
 
 puts 'finished fakery'

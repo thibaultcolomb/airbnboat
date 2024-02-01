@@ -17,18 +17,16 @@
     <%# navbar %>
     <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <i class="fa-solid fa-ship" style="font-size: 30px;"></i>
-        </a>
+          <%= link_to root_path, class: "nav-link" do %>
+            <i class="fa-solid fa-sailboat" style="font-size: 30px;"></i>
+          <% end %>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item active">
-              <%= link_to "Home", root_path, class: "nav-link"%>
-            </li>
 
             <li>
               <%= link_to "Browse boats", boats_path, class: "nav-link" %>

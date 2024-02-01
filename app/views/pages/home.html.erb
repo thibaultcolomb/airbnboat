@@ -11,9 +11,7 @@
     <div class="cards">
       <% @boats.each do |boat| %>
        <div class="card-trip" >
-          <% boat.photos.each do |photo| %>
-            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-          <% end %>
+            <%= cl_image_tag boat.photos.first.key, height: 300, width: 400, crop: :fill %>
         <div class="card-trip-infos">
           <div>
             <h3><%= boat.name %></h3>
