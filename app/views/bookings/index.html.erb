@@ -54,7 +54,7 @@
       <% end %>
     </div>
 
-    <div class="container col-5">
+    <div class="container col-5 mx-3">
      <%# // My bookings%>
       <h2 class="text-primary bg-third">My bookings</h2>
 
@@ -85,11 +85,12 @@
                   <%= booking.confirmed %>
                 </div>
               </div>
-
               <div>
-              <% if booking.end_date < Date.new %>
+
+               <% if booking.end_date < Date.today() %>
                 <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking), class: "btn btn-primary mt-2"%>
               <% end %>
+
                 <div class="d-flex justify-content-end">
                   <%= link_to edit_boat_booking_path(booking.boat,booking), class: "me-2" do %>
                     <i class="fa-regular fa-pen-to-square"></i>
