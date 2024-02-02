@@ -2,9 +2,9 @@
 
 <body style="background-color: #EDE7E3">
 <div class="container mt-4" >
-  <div class="d-flex flex-wrap">
+  <div class="d-flex flex-wrap justify-content-between">
 
-    <div class="col-4">
+    <div class="col-5">
 
       <h2 class="text-primary bg-third">Requests for my boats</h2>
       <% if @bookings.nil? %>
@@ -54,7 +54,7 @@
       <% end %>
     </div>
 
-    <div class="container col-4">
+    <div class="container col-5">
      <%# // My bookings%>
       <h2 class="text-primary bg-third">My bookings</h2>
 
@@ -68,13 +68,21 @@
         <div class="cards-grid mt-3" style="">
           <% @bookings.reverse_each do |booking| %>
           <% if booking.user == current_user && booking.confirmed == 'approved' %>
+            <div class="d-flex">
+              <div class="mb-4">
+              <% if booking.boat.photos.first %>
+                <%= cl_image_tag(booking.boat.photos.first.key, height: 100, width: 100, crop: :fill) %>
+              <% end %>
+              </div>
             <div class=" p-3 mb-4 shadow round" style="border-radius: #82C0CC; border: 20px; background-color: white;">
-              <div class="-2">
+              <div class="m-2">
                   <p><strong><%= booking.boat.name %></strong></p>
                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
-              <div style="font-weight: bold; color: #00c49a">
-              <p class="m-0"><%= booking.confirmed %></p>
+              <div class="m-2 d-flex">Status:
+                <div class="ms-2" style=" color: #00c49a;">
+                  <%= booking.confirmed %>
+                </div>
               </div>
 
               <div>
@@ -86,9 +94,6 @@
                     <i class="fa-regular fa-pen-to-square"></i>
                   <% end %>
 
-
-
-
                   <%= link_to boat_booking_path(booking.boat,booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2" do %>
                     <i class="fa-regular fa-trash-can"></i>
                   <% end %>
@@ -96,7 +101,9 @@
               </div>
 
             </div>
+            </div>
             <% end %>
+
           <% end %>
         </div>
       <% end %>
@@ -111,13 +118,22 @@
         <div class="cards-grid mt-3"  >
           <% @bookings.reverse_each do |booking|  %>
           <% if booking.user == current_user && booking.confirmed == 'pending'%>
+          <div class="d-flex">
+              <div class="mb-4">
+              <% if booking.boat.photos.first %>
+                <%= cl_image_tag(booking.boat.photos.first.key, height: 100, width: 100, crop: :fill) %>
+              <% end %>
+              </div>
             <div class=" p-3 shadow round mb-4" style="background-color: white;">
               <div class="m-2">
                   <p><strong><%= booking.boat.name %></strong></p>
                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
-              <div style="font-weight: bold; color: #f8e16c;">
-              <p class="m-0"><%= booking.confirmed %></p>
+
+              <div class="m-2 d-flex">Status:
+                <div class="ms-2" style="font-weight: italic; color: #f8e16c;">
+                  <%= booking.confirmed %>
+                </div>
               </div>
 
               <div>
@@ -130,7 +146,7 @@
                   <% end %>
                 </div>
               </div>
-
+              </div>
             </div>
             <% end %>
           <% end %>
