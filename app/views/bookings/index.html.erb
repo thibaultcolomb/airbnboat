@@ -1,7 +1,9 @@
 <!-- index.html.erb -->
 
-<div class="container mt-4">
+<body style="background-color: #EDE7E3">
+<div class="container mt-4" >
   <div class="d-flex flex-wrap">
+
     <div class="col-4">
 
       <h2 class="text-primary bg-third">Requests for my boats</h2>
@@ -76,7 +78,9 @@
               </div>
 
               <div>
+              <% if booking.end_date < Date.new %>
                 <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking), class: "btn btn-primary"%>
+              <% end %>
                 <div class="d-flex justify-content-end">
                   <%= link_to edit_boat_booking_path(booking.boat,booking), class: "me-2" do %>
                     <i class="fa-regular fa-pen-to-square"></i>
@@ -180,3 +184,4 @@
 <div data-controller="boat-details" style="display: none;">
 
 </div>
+</body>
