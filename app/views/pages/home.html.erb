@@ -1,46 +1,101 @@
 
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1501771924607-209f42a6e7e4?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
-  <div class="container">
-    <h1>Your next nautic adventure is near!</h1>
-  </div>
+<div class="banner d-flex align-tiems-center justify-content-center" style="background-position: right 20%; height: 550px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dzkglhdat/image/upload/v1706864852/roberto-h-qToVxSYXPYU-unsplash_pul1z4.jpg);">
+    <div>
+      <h1>AirbnBoat</h1>
+      <p>Your next nautic adventure is near!</p>
+    </div>
+
 </div>
 
 <div class="main">
-  <h2>Find a boat</h2>
+  <div class="d-flex justify-content-center mt-5">
+    <h3 class="text-primary">Find the perfect boat</h3>
+  </div>
+
   <div class ="boats">
     <div class="cards">
-      <% @boats.each do |boat| %>
-       <div class="card-trip" >
-            <%= cl_image_tag boat.photos.first.key, height: 300, width: 400, crop: :fill %>
+      <% @boats.each_with_index do |boat, index| %>
+      <% break if index >= 3 %>
+      <div class="card-trip">
+
+        <div class="d-flex">
+              <% if boat.photos.first.nil? %>
+                <img src="https://res.cloudinary.com/dzkglhdat/image/upload/v1706697996/no_image_b97fcc.png" alt="no_img">
+              <% else %>
+                <%= cl_image_tag(boat.photos.first.key, height: 200, crop: :fill) %>
+              <% end  %>
+        </div>
         <div class="card-trip-infos">
-          <div>
-            <h3><%= boat.name %></h3>
-            <div class ="card-trip-port-capacity">
-            <div><p><%= boat.port %></p></div>
-            <div><p><%= boat.capacity %></p></div>
-            <div><%= link_to "View boat", boat_path(boat) %></div>
+
+          <div class="row">
+            <h6 class="mb-1"><%= boat.name %></h6>
+
+            <% if boat.bookings.any? && boat.bookings.first.reviews.present? %>
+              <% number_of_ratings = 0 %>
+              <% total_rating = 0 %>
+              <% boat.bookings.each do |booking| %>
+                <% booking.reviews.each do |review| %>
+                  <% total_rating += review.rating %>
+                  <% number_of_ratings += 1 %>
+                <% end %>
+              <% end %>
+              <% average_rating = total_rating.to_f / number_of_ratings %>
+              <div class="d-flex">
+                <p class="text-info me-2"><%= display_star_rating(average_rating)%></p>
+                <p><%= number_of_ratings%> reviews</p>
+              </div>
+            <% else %>
+              <div><p>No ratings yet for this boat</p></div>
+            <% end %>
+
+            <div class ="">
+              <div class="d-flex">
+                <div class="d-flex align-items-center">
+                  <i class="fa-solid fa-location-dot fs-6 text-light"></i>
+                  <p class="ms-2 fs-6"><%= boat.port %></p>
+                </div>
+                <div class="d-flex align-items-center fs-6 ms-3">
+                  <i class="fa-solid fa-people-group text-light"></i>
+                  <p class="ms-2 fs-6"><%= boat.capacity %></p>
+                </div>
+              </div>
+
+
+              <div class="d-flex justify-content-end">
+                <p class="card-trip-pricing fs-6 fw-bold text-primary"><%= boat.price_per_day %> €/day</p>
+              </div>
+
+                    <%# <div><%= link_to "View boat", boat_path(boat) %>
             </div>
           </div>
-          <h2 class="card-trip-pricing"><%= boat.price_per_day %></h2>
         </div>
+        <%= link_to '', boat_path(boat), class: 'card-link'  %>
       </div>
-      <% end %>
+    <% end %>
    </div>
 
     <div class="button-more-boats">
-      <%= link_to "Browse more boats", boats_path, class: "btn-flat" %>
+      <%= link_to "Browse more boats", boats_path, class: "btn btn-info" %>
    </div>
 
-
-  <div class="boat-offer">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg"/>
-    <div class="boat-offer-infos">
-      <h2>Offer your boat</h2>
-      <p>Offer your boat for boat-enthusiasts easily</p>
-    <%= link_to "offer your boat", new_boat_path, class: "btn-flat" %>
+    <div class="d-flex justify-content-center mt-4">
+    <div class="offer-boat d-flex w-80 mb-5 justify-content-center" style="box-shadow: 0 0 15px rgba(0,0,0,0.2); position: relative; ">
+      <img class="" src="https://res.cloudinary.com/dzkglhdat/image/upload/v1706864459/ivan-ragozin-o9oQaOGpLz0-unsplash_wgn2ez.jpg"/>
+      <div class="bg-white px-3 d-flex flex-column justify-content-center">
+        <h4 class="text-primary">Offer your boat</h4>
+        <p>Easily offer your boat to boat-enthusiasts </p>
+        <%= link_to "Offer", new_boat_path, class: "btn btn-primary m-0" %>
+      </div>
+      <%= link_to '', new_boat_path, class: 'card-link'  %>
+    </div>
 
     </div>
-  </div>
+
+
+
+
+    </div>
+  <%# </div> %>
 </div>
 
 <% if user_signed_in?  %>
