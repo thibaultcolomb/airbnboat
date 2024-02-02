@@ -3,7 +3,7 @@
 <div class="container mt-4">
   <div class="d-flex">
     <div class="col-6">
-      <h3>Requests to book my boats:</h3>
+      <h2 class="text-primary bg-third">Requests to book my boats:</h2>
       <% if @bookings.nil? %>
         <p>You have not received any Booking for your Boats yet.
           <%= link_to root_path do %>
@@ -13,7 +13,7 @@
       <% else %>
         <div class="cards-grid mt-3">
           <% current_user.boats.each do |boat| %>
-            <% boat.bookings.reverse_each do |booking| %>
+            <% boat.bookings.reverse_each do |booking| %>z
             <div class="d-flex p-3 mb-2 shadow round">
               <div class="p-2">
                 <% if boat.photos.first %>
@@ -22,22 +22,25 @@
               </div>
               <div class="p-2 m-0">
                 <p class="mb-0"><strong><%= booking.boat.name %></strong></p>
-                <p class="mb-0">First name: <%= booking.user.first_name %></p>
-                <p class="mb-0">Last name: <%= booking.user.last_name %></p>
-                <p class="mb-0">From: <%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></p>
-                <p class="mb-0">To: <%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y") %></p>
+                <p class="mb-0"> <%= booking.user.first_name + " " + booking.user.last_name%></p>
+                <p class="mb-0"><%=  %></p>
+                <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
+
                 <div class="d-flex justify-content-between">
-                  <%= link_to 'Approve booking', review_path(booking), class: "btn btn-primary" %>
-                  <div style="color:
+
+                  <div style="font-weight: bold; color:
                   <% if booking.confirmed == 'approved' %>
-                  green
+                  #00c49a
                   <% elsif booking.confirmed == 'pending' %>
-                  yellow
+                  #f8e16c
                   <% else %>
-                  red
+                  #f2542d
                   <% end %>;
               ">
-              <p class="m-0">Status: <%= booking.confirmed %></p>
+              <p class="m-0"><%= booking.confirmed %></p>
+               <% if booking.confirmed == 'pending' %>
+                <%= link_to 'Approve booking', review_path(booking), class: "btn btn-primary" %>
+              <% end %>
                 </div>
               </div>
 
@@ -50,6 +53,8 @@
       <% end %>
     </div>
 
+
+ <%# // My bookings %>
     <div class="container">
       <h3>My bookings: </h3>
       <% if @bookings.nil? %>
@@ -62,19 +67,18 @@
             <div class=" p-3 shadow round mb-2">
               <div class="m-2">
                   <p><strong><%= booking.boat.name %></strong></p>
-                  <p class="mb-0">From: <%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></p>
-                  <p class="mb-0">To: <%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y") %></p>
+                  <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
-              <div style="color:
+              <div style="font-weight: bold; color:
               <% if booking.confirmed == 'approved' %>
-              green
+               #00c49a
               <% elsif booking.confirmed == 'pending' %>
-              yellow
+              #f8e16c
               <% else %>
-              red
+              #f2542d
               <% end %>;
               ">
-              <p class="m-0">Status: <%= booking.confirmed %></p>
+              <p class="m-0"><%= booking.confirmed %></p>
               </div>
 
               <div>
