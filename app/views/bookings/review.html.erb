@@ -1,18 +1,34 @@
+<div class="row justify-content-center mt-5 text-primary">
+  <div class="col-6">
+  <h2 class="mb-3">Booking request for <i><%= @booking.boat.name %></i></h1>
+    <p>The current status of the booking request is: <b><%= @booking.confirmed %></b></p>
+    <div class="mb-3">
+      <div class="mb-3" style="display: inline;">
+        <div class="card-review" style="display: flex; ">
+            <div style="flex: 1;">Requested by</div>
+            <div style="flex: 1;"><%= @booking.user.first_name %> <%= @booking.user.last_name %></div>
+        </div>
+        <div class="card-review" style="display: flex;">
+          <div style="flex: 1;">Dates</div>
+          <div style="flex: 1;">From <%= @booking.start_date.strftime("%B %d, %Y") %> until <%= @booking.end_date.strftime("%B %d, %Y") %></div>
+        </div>
+        <div class="card-review" style="display: flex;">
+          <div style="flex: 1;">Booking requested on</div>
+          <div style="flex: 1;"><%= @booking.created_at.strftime("%B %d, %Y") %> </div>
+        </div>
+      </div>
+    </div>
+    <!-- Content of the flex container -->
 
-<div class="container">
-<h2 class="mb-3">Booking request for your boat <i><%= @booking.boat.name %></i></h1>
-  <div class="card" style='padding: 15px'>
-    <p>Requested By: <%= @booking.user.first_name %> <%= @booking.user.last_name %> </p>
-    <p>Dates: <%= @booking.start_date.strftime("%Y-%m-%d") %> until <%= @booking.end_date.strftime("%Y-%m-%d") %></p>
 
 
-    <p><i>The current status of the booking request is: <b><%= @booking.confirmed %></b></i></p>
 
     <%= simple_form_for @booking do |f| %>
       <%= f.input :confirmed, collection: ['approved', 'rejected'], label: "Review the booking" %>
 
       <%= f.submit "Submit", class: "btn btn-primary mt-3 mr-2" %>
     <% end %>
-  </div>
   <%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-secondary mt-5"%>
+</div>
+</div>
 </div>
