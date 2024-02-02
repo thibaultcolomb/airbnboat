@@ -11,10 +11,10 @@
           <% end %>
         </p>
       <% else %>
-        <div class="cards-grid mt-3">
+        <div class="cards-grid mt-3" style="background-color: white;">
           <% current_user.boats.each do |boat| %>
             <% boat.bookings.reverse_each do |booking| %>
-            <div class="d-flex mb-2 shadow round">
+            <div class="d-flex mb-4 shadow round">
               <div class="">
                 <% if boat.photos.first %>
                   <%= cl_image_tag(boat.photos.first.key, height: 100, width: 100, crop: :fill) %>
@@ -59,15 +59,15 @@
 
 
  <%# // upcomming bookings %>
-      <h3>Upcoming bookings</h3>
+      <h3>Upcoming</h3>
       <% if @bookings.nil? %>
         <p>You have not booked any boat yet. Make your first booking? </p>
         <%= link_to "Browse boats", boats_path %>
       <% else %>
-        <div class="cards-grid mt-3" style="border-radiu: #82C0CC; border: 20px;">
+        <div class="cards-grid mt-3" style="border-radiu: #82C0CC; border: 20px; background-color: white;">
           <% @bookings.reverse_each do |booking| %>
           <% if booking.user == current_user && booking.confirmed == 'approved' %>
-            <div class=" p-3 mb-2 shadow round">
+            <div class=" p-3 mb-4 shadow round">
               <div class="-2">
                   <p><strong><%= booking.boat.name %></strong></p>
                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
@@ -100,15 +100,15 @@
 
 
   <%# pending bookings %>
-  <h3>Pending bookings </h3>
+  <h3>Pending</h3>
       <% if @bookings.nil? %>
         <p>You have not booked any boat yet. Make your first booking? </p>
         <%= link_to "Browse boats", boats_path %>
       <% else %>
-        <div class="cards-grid mt-3" >
+        <div class="cards-grid mt-3" style="background-color: white;" >
           <% @bookings.reverse_each do |booking|  %>
           <% if booking.user == current_user && booking.confirmed == 'pending'%>
-            <div class=" p-3 shadow round mb-2">
+            <div class=" p-3 shadow round mb-4">
               <div class="m-2">
                   <p><strong><%= booking.boat.name %></strong></p>
                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
