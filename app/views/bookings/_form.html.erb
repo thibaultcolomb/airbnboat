@@ -1,0 +1,14 @@
+<div class='main'>
+  <%= simple_form_for [boat, booking] do |f| %>
+  <%= f.input :start_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } }, label: 'From:', class: "bg-light" %>
+
+   <%= f.input :end_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } }, label: 'To:' %>
+    <%= f.submit "Book", class: 'btn btn-primary w-100' %>
+
+
+  <% end %>
+</div>

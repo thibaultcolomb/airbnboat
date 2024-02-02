@@ -18,7 +18,7 @@ class BookingsController < ApplicationController
   def approve
     @booking = Booking.find(params[:id])
     @booking.update(booking_params)
-    redirect_to review_path(@booking)
+    redirect_to boat_bookings_path(@booking)
   end
 
   # def update

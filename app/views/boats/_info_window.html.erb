@@ -5,16 +5,17 @@
 <% end  %>
 
 <h2><%= boat.name %></h2>
-<div class="port">
+<div class="info_window_infos">
+
   <i class="fa-solid fa-location-dot"></i>
   <p><%= boat.port %></p>
-</div>
-<div class="capacity">
+
+
   <i class="fa-solid fa-people-group"></i>
   <p><%= boat.capacity %></p>
+
 </div>
 <div class="price">
-<i class="fa-solid fa-coins"></i>
-<p><%= boat.price_per_day %> €</p>
+<p><%= boat.price_per_day %> €/day</p>
 </div>
  <div><%= link_to "View boat", boat_path(boat) %></div>

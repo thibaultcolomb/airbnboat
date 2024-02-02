@@ -1,11 +1,21 @@
-.port, .capacity, .price {
+ .info_window_infos {
   display: flex;
   justify-content: space-between;
-  margin: 20px;
+
+}
+
+.price {
+  display: flex;
+  justify-content: flex-end;
+  color: #82C0CC;
 }
 
 img {
   height: 200px;
   width: 100%;
   object-fit: cover;
+}
+
+i {
+  color: #82C0CC;
 }

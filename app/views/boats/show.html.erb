@@ -1,60 +1,116 @@
-<div class="row justify-content-center mt-3">
+
+<div class="row justify-content-center mt-4">
   <div class="col-6">
-    <h2><%= @boat.name %></h2>
+    <h4 class="text-primary"><%= @boat.name %></h4>
 
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <%@boat.photos.reverse_each do |photo| %>
-      <%= cl_image_tag(photo.key, height: 300, crop: :fill, class: "carousel-item active")%>
-    <% end %>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-
-    <div class="card-content mt-3">
-      <p>About this boat: <%= @boat.description %></p>
-      <div>
-        <p>Port: <%= @boat.port %></p>
-        <p>Category: <%= @boat.category %></p>
-      </div>
-      <div class="d-flex justify-content-between">
-        <p>
-          <i class="fa-solid fa-people-group"></i>
-          <%= @boat.capacity %>
-        </p>
-        <p>
-          <i class="fa-solid fa-euro-sign"></i>
-          <%= @boat.price_per_day %>
-        </p>
-      </div>
-      <p>
-        License required:
-        <%if @boat.license == true %>
-          <%= "Yes" %>
-        <% else %>
-          <%= "No" %>
+    <div id="carouselExampleControls" class="carousel slide bg-black" data-bs-ride="carousel">
+      <div class="carousel-inner" style="overflow: hidden; height: 350px;">
+        <% is_first_photo = true %>
+        <%@boat.photos.each do |photo| %>
+            <%= cl_image_tag(photo.key, class: "carousel-item #{is_first_photo ? 'active' : ''}",style: "object-fit: contain; height: 100%;")%>
+        <% is_first_photo = false %>
         <% end %>
-      </p>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
     </div>
 
-    <%= link_to "Back to boats", boats_path, class: "btn btn-primary" %>
-    <%= link_to "Book this boat", new_boat_booking_path(@boat), class: "btn btn-primary" %>
+    <div class="d-flex justify-content-between">
+    <div class="card-content mt-3 ms-2 p-2 col-7">
+
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-location-dot fs-5 text-light"></i>
+            <p class="ms-2 mb-0 fs-5 text-primary"><%= @boat.port %></p>
+          </div>
+          <div class="d-flex align-items-center fs-5 ms-3">
+            <i class="fa-solid fa-people-group text-light"></i>
+            <p class="ms-2 mb-0 fs-5 text-primary"><%= @boat.capacity %></p>
+          </div>
+        </div>
+
+        <div class="d-flex">
+          <p class="ms-2 mb-0 fs-6 text-secondary font-italic"><i>Category: <%= @boat.category %></i></p>
+        </div>
+      </div>
+
+      <% if @boat.bookings.any? && @boat.bookings.first.reviews.present? %>
+        <% number_of_ratings = 0 %>
+        <% total_rating = 0 %>
+        <% @boat.bookings.each do |booking| %>
+          <% booking.reviews.each do |review| %>
+            <% total_rating += review.rating %>
+            <% number_of_ratings += 1 %>
+          <% end %>
+        <% end %>
+        <% average_rating = total_rating.to_f / number_of_ratings %>
+        <div class="d-flex">
+          <p class="text-info me-2"><%= display_star_rating(average_rating)%></p>
+          <p><%= number_of_ratings%> reviews</p>
+        </div>
+        <% else %>
+          <div><p>No ratings yet for this boat</p></div>
+        <% end %>
+
+        <div class="border-bottom border-third"></div>
+
+      <p class="mb-0 mt-3 fs-5 text-primary">About this boat: </p>
+      <p><%= @boat.description %></p>
+
+      <div class="mt-4 d-flex">
+        <p class="mb-1">License required: </p>
+        <%if @boat.license == true %>
+          <p class="fw-bold text-primary ms-2 mb-1"><%= "Yes" %></p>
+        <% else %>
+          <p class="fw-bold text-primary ms-2 mb-1"><%= "No" %></p>
+        <% end %>
+      </div>
+
+      <div class="d-flex justify-content-end mb-2">
+        <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center">
+            <i class="fa-solid fa-euro-sign me-2 text-primary fw-bold fs-4"></i>
+            <p class="text-primary fw-bold fs-4 mb-0"><%= @boat.price_per_day %></p>
+          </div>
+          <p class="mb-0 ms-1">/day</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-4 me-2 border border-secondary rounded-lg mt-3 p-3 pb-0", style= "box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+      <%= render 'bookings/form', boat: @boat, booking: @booking %>
+    </div>
+    </div>
+
+    <%# <div class="d-flex justify-content-between p-2">
+      <%= link_to "Back to boats", boats_path, class: "btn btn-light text-white" %>
+      <%# <%= link_to "Book this boat", new_boat_booking_path(@boat), class: "btn btn-primary" %>
+    <%# </div> %>
+
+
+    <div class="my-5 p-2">
+      <p class="mb-0 mt-3 fs-5 text-primary">Reviews</p>
+      <% if @boat.bookings.any? && @boat.bookings.first.reviews.present? %>
+        <% @boat.bookings.each do |booking| %>
+          <div class=" border-bottom border-secondary mt-3">
+            <p class="mb-2 text-info"><%= display_star_rating(booking.reviews.first.rating) %></p>
+            <p class="mb-1">Reviewed on <%= booking.reviews.first.created_at.strftime("%B %e, %Y") %></p>
+            <p><i><%= booking.reviews.first.description %></i></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p>There are no reviews for this boat.</p>
+      <% end %>
+    </div>
 
   </div>
-    <h2>Reviews for <%= @boat.name %></h2>
-    <% @boat.bookings.each do |booking| %>
-      <div class="card">
-        <p><%= display_star_rating(booking.reviews.first.rating) %></p>
-        <p>Reviewed on <%= booking.reviews.first.created_at.strftime("%B %e, %Y") %></p>
-        <p><i><%= booking.reviews.first.description %></i></p>
-      </div>
-    <% end %>
+
 
 </div>
