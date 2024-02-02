@@ -1,6 +1,6 @@
 <div class="main mt-4">
   <h2 class="text-primary bg-third text-center">Find a boat</h2>
-  <div class="searchbar" style="font-family: raleway">
+  <div class="searchbar"  style="font-family: raleway">
     <%= form_with url: boats_path, method: :get, class: "d-flex" do %>
 
       <%= text_field_tag :query, params[:query], class: "form-control border-light", placeholder: "Search by location, boat type..." %>
@@ -11,7 +11,8 @@
         <%= text_field_tag :end_date,
           params[:end_date],
           data: { controller: "datepicker" }, placeholder: "Until", class: "form-control border-light ms-1"  %>
-        <%= submit_tag "Search", name: "", class: "btn btn-primary ms-1", style:"background-color: #FFA62B; color: black; font-weight: bold;" %>
+        <%= submit_tag "Search", name: "", class: "btn btn-primary ms-", style:"background-color: #FFA62B; color: black; font-weight: bold;" %>
+
         </div>
 
     <% end %>
