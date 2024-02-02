@@ -1,11 +1,15 @@
 <div class='main'>
+<div class="row justify-content-center mt-5">
+  <div class="col-6">
 <div>
   <h2 class="mb-3">Review of <i><%= @boat.name %></i></h2>
     <%= simple_form_for [@boat, @booking, @review] do |f| %>
-    <%= f.input :rating, label: "Your Rating", collection: ['⭐️', '⭐️⭐️', '⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️', '⭐️⭐️⭐️⭐️⭐️'], as: :select %>
+    <%= f.input :rating, label: "Your Rating", collection: [1, 2, 3, 4, 5], as: :select %>
     <%= f.input :description, label: "Tell us about your trip...", as: :text %>
     <%= f.submit "Submit", class: "btn btn-primary mt-3 mr-2" %>
     <% end %>
     <%= link_to "Back to Dashboard", dashboard_path, class: "btn btn-secondary mt-5" %>
+</div>
+</div>
 </div>
 </div>
