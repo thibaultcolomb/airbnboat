@@ -28,7 +28,7 @@
                 <p class="mb-0"><strong><%= booking.boat.name %></strong></p>
                 <p class="mb-0"> <%= booking.user.first_name + " " + booking.user.last_name%></p>
                 <p class="mb-0"><%=  %></p>
-                <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
+                <p class="mb-0 "> <i class="fa-regular fa-calendar-days"></i> <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
 
                 <div class="d-flex justify-content-between">
                   <div style="font-weight: bold; color:
@@ -77,7 +77,8 @@
             <div class=" p-3 mb-4 shadow round" style="border-radius: #82C0CC; border: 20px; background-color: white;">
               <div class="m-2">
                   <p><strong><%= booking.boat.name %></strong></p>
-                  <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
+
+                  <p class="mb-0 "> <i class="fa-regular fa-calendar-days"></i>  <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
               <div class="m-2 d-flex">Status:
                 <div class="ms-2" style=" color: #00c49a;">
@@ -87,7 +88,7 @@
 
               <div>
               <% if booking.end_date < Date.new %>
-                <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking), class: "btn btn-primary"%>
+                <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking), class: "btn btn-primary mt-2"%>
               <% end %>
                 <div class="d-flex justify-content-end">
                   <%= link_to edit_boat_booking_path(booking.boat,booking), class: "me-2" do %>
@@ -127,13 +128,15 @@
             <div class=" p-3 shadow round mb-4" style="background-color: white;">
               <div class="m-2">
                   <p><strong><%= booking.boat.name %></strong></p>
-                  <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
+                  <p class="mb-0 "> <i class="fa-regular fa-calendar-days"></i>  <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
+
 
               <div class="m-2 d-flex">Status:
                 <div class="ms-2" style="font-weight: italic; color: #f8e16c;">
                   <%= booking.confirmed %>
                 </div>
+
               </div>
 
               <div>
