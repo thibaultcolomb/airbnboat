@@ -13,7 +13,7 @@
       <% else %>
         <div class="cards-grid mt-3">
           <% current_user.boats.each do |boat| %>
-            <% boat.bookings.reverse_each do |booking| %>
+            <% boat.bookings.reverse_each do |booking| %>z
             <div class="d-flex p-3 mb-2 shadow round">
               <div class="p-2">
                 <% if boat.photos.first %>
@@ -52,79 +52,33 @@
         </div>
       <% end %>
     </div>
- <%# // upcoming bookings %>
+
+
+ <%# // upcomming bookings %>
     <div class="container">
-      <h2 class="text-primary bg-third text-center">My bookings: </h2>
+      <h3>Upcoming bookings</h3>
       <% if @bookings.nil? %>
         <p>You have not booked any boat yet. Make your first booking? </p>
         <%= link_to "Browse boats", boats_path %>
       <% else %>
-
-        <div class="cards-grid mt-3">
-         <h3 class="text-primary bg-third text-center">Upcoming bookings: </h3>
+        <div class="cards-grid mt-3" style="border-radiu: #82C0CC; border: 20px;">
           <% @bookings.reverse_each do |booking| %>
-          <% if booking.user == current_user && booking.confirmed =="approved"%>
-            <div class=" p-3 shadow round mb-2">
-              <div class="m-2">
+          <% if booking.user == current_user && booking.confirmed == 'approved' %>
+            <div class=" p-3 mb-2 shadow round mb-2">
+              <div class="-2">
                   <p><strong><%= booking.boat.name %></strong></p>
-                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
+                  <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
               <div style="font-weight: bold; color:
               <% if booking.confirmed == 'approved' %>
-              #00c49a
+               #00c49a
               <% elsif booking.confirmed == 'pending' %>
               #f8e16c
               <% else %>
               #f2542d
               <% end %>;
               ">
-              <p class="m-0"><%= booking.confirmed %></p>
-              </div>
-
-              <div>
-                <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking) %>
-                <div class="d-flex justify-content-end">
-                  <%= link_to edit_boat_booking_path(booking.boat,booking), class: "me-2" do %>
-                    <i class="fa-regular fa-pen-to-square"></i>
-                  <% end %>
-                  <%= link_to boat_booking_path(booking.boat,booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2" do %>
-                    <i class="fa-regular fa-trash-can"></i>
-                  <% end %>
-                </div>
-              </div>
-
-            </div>
-            <% end %>
-          <% end %>
-      <% end %>
-
-
- <%# // pending bookings %>
-     <div class="container">
-      <% if @bookings.nil? %>
-        <p>You have not booked any boat yet. Make your first booking? </p>
-        <%= link_to "Browse boats", boats_path %>
-      <% else %>
-
-        <div class="cards-grid mt-3">
-         <h3 class="text-primary bg-third text-center">pending bookings: </h3>
-          <% @bookings.reverse_each do |booking| %>
-          <% if booking.user == current_user && booking.confirmed =="pending"%>
-            <div class=" p-3 shadow round mb-2">
-              <div class="m-2">
-                  <p><strong><%= booking.boat.name %></strong></p>
-                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
-              </div>
-              <div style="font-weight: bold; color:
-              <% if booking.confirmed == 'approved' %>
-              #00c49a
-              <% elsif booking.confirmed == 'pending' %>
-              #f8e16c
-              <% else %>
-              #f2542d
-              <% end %>;
-              ">
-              <p class="m-0"><%= booking.confirmed %></p>
+              <p class="m-0">Status: <%= booking.confirmed %></p>
               </div>
 
               <div>
@@ -146,36 +100,33 @@
       <% end %>
 
 
-<%# // rejected bookings %>
-     <div class="container">
+  <%# pending bookings %>
+  <h3>Pending bookings </h3>
       <% if @bookings.nil? %>
         <p>You have not booked any boat yet. Make your first booking? </p>
         <%= link_to "Browse boats", boats_path %>
       <% else %>
-
-        <div class="cards-grid mt-3">
-         <h3 class="text-primary bg-third text-center">rejected bookings: </h3>
-          <% @bookings.reverse_each do |booking| %>
-          <% if booking.user == current_user && booking.confirmed =="rejected"%>
+        <div class="cards-grid mt-3" >
+          <% @bookings.reverse_each do |booking|  %>
+          <% if booking.user == current_user && booking.confirmed == 'pending'%>
             <div class=" p-3 shadow round mb-2">
               <div class="m-2">
                   <p><strong><%= booking.boat.name %></strong></p>
-                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
+                  <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
               <div style="font-weight: bold; color:
               <% if booking.confirmed == 'approved' %>
-              #00c49a
+               #00c49a
               <% elsif booking.confirmed == 'pending' %>
               #f8e16c
               <% else %>
               #f2542d
               <% end %>;
               ">
-              <p class="m-0"><%= booking.confirmed %></p>
+              <p class="m-0">Status: <%= booking.confirmed %></p>
               </div>
 
               <div>
-                <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking) %>
                 <div class="d-flex justify-content-end">
                   <%= link_to edit_boat_booking_path(booking.boat,booking), class: "me-2" do %>
                     <i class="fa-regular fa-pen-to-square"></i>
@@ -189,13 +140,16 @@
             </div>
             <% end %>
           <% end %>
+        </div>
       <% end %>
+
 
     </div>
   </div>
 
+
   <div class="mt-5">
-    <h2 class="text-primary bg-third text-center">My boats to rent:</h2>
+    <h3>My boats to rent:</h3>
     <div class="mb-3 d-flex justify-content-end">
       <%= link_to "Add a boat", new_boat_path, class: "btn btn-primary" %>
     </div>
@@ -225,7 +179,7 @@
       </ul>
     <% end  %>
   </div>
-
+</div>
 
 
 <!--------------------------------->
