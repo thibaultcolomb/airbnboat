@@ -2,8 +2,8 @@
 
 <div class="container mt-4">
   <div class="d-flex">
-    <div class="col-6">
-      <h2 class="text-primary bg-third">Requests to book my boats:</h2>
+    <div class="col-4">
+      <h2 class="text-primary bg-third">Requests for my boats</h2>
       <% if @bookings.nil? %>
         <p>You have not received any Booking for your Boats yet.
           <%= link_to root_path do %>
@@ -13,11 +13,11 @@
       <% else %>
         <div class="cards-grid mt-3">
           <% current_user.boats.each do |boat| %>
-            <% boat.bookings.reverse_each do |booking| %>z
-            <div class="d-flex p-3 mb-2 shadow round">
-              <div class="p-2">
+            <% boat.bookings.reverse_each do |booking| %>
+            <div class="d-flex mb-2 shadow round">
+              <div class="">
                 <% if boat.photos.first %>
-                  <%= cl_image_tag(boat.photos.first.key, height: 150, width: 120, crop: :fill) %>
+                  <%= cl_image_tag(boat.photos.first.key, height: 100, width: 100, crop: :fill) %>
                 <% end %>
               </div>
               <div class="p-2 m-0">
@@ -53,9 +53,12 @@
       <% end %>
     </div>
 
+    <div class="container col-4">
+     <%# // My bookings%>
+      <h2 class="text-primary bg-third">My bookings</h2>
+
 
  <%# // upcomming bookings %>
-    <div class="container">
       <h3>Upcoming bookings</h3>
       <% if @bookings.nil? %>
         <p>You have not booked any boat yet. Make your first booking? </p>
@@ -64,29 +67,25 @@
         <div class="cards-grid mt-3" style="border-radiu: #82C0CC; border: 20px;">
           <% @bookings.reverse_each do |booking| %>
           <% if booking.user == current_user && booking.confirmed == 'approved' %>
-            <div class=" p-3 mb-2 shadow round mb-2">
+            <div class=" p-3 mb-2 shadow round">
               <div class="-2">
                   <p><strong><%= booking.boat.name %></strong></p>
                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
-              <div style="font-weight: bold; color:
-              <% if booking.confirmed == 'approved' %>
-               #00c49a
-              <% elsif booking.confirmed == 'pending' %>
-              #f8e16c
-              <% else %>
-              #f2542d
-              <% end %>;
-              ">
-              <p class="m-0">Status: <%= booking.confirmed %></p>
+              <div style="font-weight: bold; color: #00c49a">
+              <p class="m-0"><%= booking.confirmed %></p>
               </div>
 
               <div>
-                <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking) %>
+                <%= link_to "Review your trip",  new_boat_booking_review_path(booking.boat, booking), class: "btn btn-primary"%>
                 <div class="d-flex justify-content-end">
                   <%= link_to edit_boat_booking_path(booking.boat,booking), class: "me-2" do %>
                     <i class="fa-regular fa-pen-to-square"></i>
                   <% end %>
+
+
+
+
                   <%= link_to boat_booking_path(booking.boat,booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure ?"}, class: "me-2" do %>
                     <i class="fa-regular fa-trash-can"></i>
                   <% end %>
@@ -114,16 +113,8 @@
                   <p><strong><%= booking.boat.name %></strong></p>
                   <p class="mb-0">from <strong><%= (Time.parse(booking.start_date.to_s)).strftime("%d/%m/%Y") %></strong> to <strong><%= (Time.parse(booking.end_date.to_s)).strftime("%d/%m/%Y")%></strong></p>
               </div>
-              <div style="font-weight: bold; color:
-              <% if booking.confirmed == 'approved' %>
-               #00c49a
-              <% elsif booking.confirmed == 'pending' %>
-              #f8e16c
-              <% else %>
-              #f2542d
-              <% end %>;
-              ">
-              <p class="m-0">Status: <%= booking.confirmed %></p>
+              <div style="font-weight: bold; color: #f8e16c;">
+              <p class="m-0"><%= booking.confirmed %></p>
               </div>
 
               <div>
